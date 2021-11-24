@@ -30,7 +30,7 @@ class Car(CarBase):
 class Truck(CarBase):
     def __init__(self, brand, photo_file_name, carrying, body_lwh):
         super().__init__(brand, photo_file_name, carrying)
-        self.car_type = 'Truck'
+        self.car_type = 'truck'
         self.body_length = 0.0
         self.body_width = 0.0
         self.body_height = 0.0
