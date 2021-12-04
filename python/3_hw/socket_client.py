@@ -38,6 +38,8 @@ class Client:
             response = self.sock.recv(1024)
 
             result, data = response.decode().split('\n', 1)
+            if data == "":
+                return response_dict
             if 'ok' not in result:
                 raise ClientError(response.decode())
 
@@ -57,4 +59,5 @@ class Client:
 if __name__ == '__main__':
     client = Client('127.0.0.1', 8888, timeout=15)
     client.put('palm.cpu', 0.5, timestamp=123456789)
+    client.put('test.cpu', 0.5, timestamp=123456789)
     print(client.get('*'))
