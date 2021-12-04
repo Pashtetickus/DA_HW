@@ -91,25 +91,25 @@ def get_car_from_csv_row(row, valid_csv_len):
         return None
     if not (brand and photo_f_ext and carrying):
         return None
-    if os.path.splitext(photo_f_ext)[1] not in POSSIBLE_PHOTO_F_EXTENSIONS:
-        return None
+    # if os.path.splitext(photo_f_ext)[1] not in POSSIBLE_PHOTO_F_EXTENSIONS:
+    #     return None
 
     try:
         carrying = float(carrying)
     except ValueError:
         return None
 
-    if car_type == Car.__name__.lower():
+    if car_type == POSSIBLE_CAR_TYPES[0]:
         try:
             passenger_sc = int(passenger_sc)
         except ValueError:
             return None
         return Car(brand, photo_f_ext, carrying, passenger_sc)
 
-    if car_type == Truck.__name__.lower():
+    if car_type == POSSIBLE_CAR_TYPES[1]:
         return Truck(brand, photo_f_ext, carrying, body_whl)
 
-    if car_type == SpecMachine.__name__.lower():
+    if car_type == POSSIBLE_CAR_TYPES[2]:
         if not extra:
             return None
         return SpecMachine(brand, photo_f_ext, carrying, extra)
@@ -117,5 +117,4 @@ def get_car_from_csv_row(row, valid_csv_len):
 
 # truck_1 = Truck('Komatsu-D355', 'd355.jpg', '93', '3x2x10')
 # print(truck_1.get_photo_file_ext())
-
-# test_car_list = get_car_list('cars.csv')
+# print(get_car_list('cars.csv'))

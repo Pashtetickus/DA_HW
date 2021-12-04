@@ -16,7 +16,9 @@ class File:
         return os.path.abspath(self._path)
 
     def __add__(self, other_file):
-        path_for_combined_files = os.path.join(tempfile.gettempdir(), 'tmp.txt')
+        new_f_name = next(tempfile._get_candidate_names())  # Выглядит кривовато
+        path_for_combined_files = os.path.join(tempfile.gettempdir(), new_f_name + '.txt')
+
         combined_file = File(path_for_combined_files)
         combined_data = self.read() + other_file.read()
         combined_file.write(combined_data)
