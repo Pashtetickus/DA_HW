@@ -13,6 +13,7 @@ while True:
     if not data:
         break
     print(data.decode())
+    # conn.send(b'ok\n\n')
     conn.send(response)
 
 conn.close()

@@ -38,7 +38,8 @@ class Client:
             response = self.sock.recv(1024)
 
             result, data = response.decode().split('\n', 1)
-            if data == "":
+
+            if data == '\n' and 'ok' in result:
                 return response_dict
             if 'ok' not in result:
                 raise ClientError(response.decode())
